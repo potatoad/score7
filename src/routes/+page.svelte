@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { Button, Input } from 'flowbite-svelte'
+	import { Button, ButtonGroup, Input } from 'flowbite-svelte'
 	import ScoreButtons from '../components/ScoreButtons.svelte'
+	import { setLocale } from '$lib/paraglide/runtime'
+	import { m } from '$lib/paraglide/messages.js'
+	import PlayerCard from '../components/PlayerCard.svelte'
 
 	class Player {
 		name = $state('')
@@ -41,6 +44,10 @@
 	let players = $state<Player[]>([])
 	let currentName = $state('')
 	let selectedPlayer = $state(0)
+	let scoredCards = $state([true, true, true, true, true, true, true, true, true, true, true, true])
+	const resetScoredCards = (): void => {
+		scoredCards = [true, true, true, true, true, true, true, true, true, true, true, true]
+	}
 	let loaded = $state(false)
 
 	$effect(() => {
@@ -77,36 +84,34 @@
 	const handleDeletePlayer = (index: number): void => {
 		players.splice(index, 1)
 	}
+
+	const nextRound = (): void => {
+		players.forEach((player) => {
+			player.addToScore(player.roundScore)
+			player.resetRoundScore()
+		})
+		selectedPlayer = 0
+		resetScoredCards()
+	}
 </script>
 
-<div>
-	<h1>Score 7</h1>
-	<Input class="mb-4" placeholder="Name" type="text" bind:value={currentName} />
-	<Button class="mb-4" onclick={() => handleNewPlayer()}>Add Player</Button>
-	{#each players as player, index (index + 1)}
-		<div
-			class={`m-4 rounded-lg p-2 ${index === selectedPlayer ? 'bg-[#f7e7b2]' : ''}`}
-			role="button"
-			tabindex="0"
-			onclick={() => (selectedPlayer = index)}
-			onkeydown={(e) => {
-				if (e.key === 'Enter' || e.key === ' ') {
-					selectedPlayer = index
-					e.preventDefault()
-				}
-			}}
-		>
-			<h3>{player.name}</h3>
-			<p>Score: {player.score}</p>
-			<p>Round Score: {player.roundScore}</p>
-			<Button onclick={() => handleDeletePlayer(index)}>Delete</Button>
+<div class="w-3xl flex justify-center">
+	<div>
+		<div class="flex my-4">
+			<h1 class="grow">Score 7</h1>
+			<ButtonGroup>
+				<Button onclick={() => setLocale('en')}>en</Button>
+				<Button onclick={() => setLocale('es')}>es</Button>
+			</ButtonGroup>
 		</div>
-	{/each}
-	<ScoreButtons {players} {selectedPlayer} />
+		<Input class="mb-4" placeholder="Name" type="text" bind:value={currentName} />
+		<Button class="mb-4" onclick={() => handleNewPlayer()}>{m.add_player()}</Button>
+		<div class="grid grid-cols-4">
+			{#each players as player, index (index + 1)}
+				<PlayerCard {player} bind:selectedPlayer {index} {handleDeletePlayer} {resetScoredCards} />
+			{/each}
+		</div>
+		<Button class="mb-4" onclick={() => nextRound()}>{m.next_round()}</Button>
+		<ScoreButtons {players} bind:selectedPlayer bind:scoredCards />
+	</div>
 </div>
-
-<style>
-	:global(.selected) {
-		background-color: #f3f3f3;
-	}
-</style>

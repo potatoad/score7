@@ -1,4 +1,8 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hola, {name} from es!"
+	"add_player": "Agregar jugador",
+	"score": "Puntuación",
+	"round_score":"Puntuación de la ronda",
+	"delete": "Eliminar",
+	"next_round":"Próxima ronda"
 }
