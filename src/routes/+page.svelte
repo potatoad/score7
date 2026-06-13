@@ -1,9 +1,25 @@
 <script lang="ts">
-	import { Button, ButtonGroup, Input } from 'flowbite-svelte'
+	import {
+		Button,
+		ButtonGroup,
+		Input,
+		Navbar,
+		NavBrand,
+		NavHamburger,
+		NavLi,
+		NavUl,
+		DropdownItem,
+		DropdownDivider,
+		Dropdown
+	} from 'flowbite-svelte'
+	import { ChevronDownOutline } from 'flowbite-svelte-icons'
 	import ScoreButtons from '../components/ScoreButtons.svelte'
 	import { setLocale } from '$lib/paraglide/runtime'
 	import { m } from '$lib/paraglide/messages.js'
 	import PlayerCard from '../components/PlayerCard.svelte'
+
+	import { page } from '$app/state'
+	let activeUrl = $derived(page.url.pathname)
 
 	class Player {
 		name = $state('')
@@ -44,11 +60,15 @@
 	let players = $state<Player[]>([])
 	let currentName = $state('')
 	let selectedPlayer = $state(0)
+	let loaded = $state(false)
+
 	let scoredCards = $state([true, true, true, true, true, true, true, true, true, true, true, true])
+
+	let numberOfScoredCards = $state(0)
+
 	const resetScoredCards = (): void => {
 		scoredCards = [true, true, true, true, true, true, true, true, true, true, true, true]
 	}
-	let loaded = $state(false)
 
 	$effect(() => {
 		if (!loaded) {
@@ -91,19 +111,15 @@
 			player.resetRoundScore()
 		})
 		selectedPlayer = 0
+		numberOfScoredCards = 0
 		resetScoredCards()
 	}
 </script>
 
-<div class="w-3xl flex justify-center">
+<ScoreButtons {players} bind:selectedPlayer bind:scoredCards bind:numberOfScoredCards />
+<!-- 
+<div class="max-w-4xl mx-auto px-4">
 	<div>
-		<div class="flex my-4">
-			<h1 class="grow">Score 7</h1>
-			<ButtonGroup>
-				<Button onclick={() => setLocale('en')}>en</Button>
-				<Button onclick={() => setLocale('es')}>es</Button>
-			</ButtonGroup>
-		</div>
 		<Input class="mb-4" placeholder="Name" type="text" bind:value={currentName} />
 		<Button class="mb-4" onclick={() => handleNewPlayer()}>{m.add_player()}</Button>
 		<div class="grid grid-cols-4">
@@ -112,6 +128,7 @@
 			{/each}
 		</div>
 		<Button class="mb-4" onclick={() => nextRound()}>{m.next_round()}</Button>
-		<ScoreButtons {players} bind:selectedPlayer bind:scoredCards />
+		Scored Cards: {numberOfScoredCards}
+		<ScoreButtons {players} bind:selectedPlayer bind:scoredCards bind:numberOfScoredCards />
 	</div>
-</div>
+</div> -->
