@@ -1,7 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 import { mdsvex } from 'mdsvex'
 import { paraglideVitePlugin } from '@inlang/paraglide-js'
-import adapter from '@sveltejs/adapter-static'
+import adapter from '@sveltejs/adapter-auto'
 import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vite'
 
