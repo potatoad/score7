@@ -1,33 +1,34 @@
 <script lang="ts">
-	import { Button } from 'flowbite-svelte'
 	import { m } from '$lib/paraglide/messages.js'
+    import { getPlayerContext } from '../contexts/players.svelte'
+
+    const context = getPlayerContext()
 
 	let {
 		player,
-		selectedPlayer = $bindable(),
-		index,
-		handleDeletePlayer,
+		index = $bindable(),
 		resetScoredCards
 	} = $props()
+
+	const currentPlayer = context.currentPlayer
 </script>
 
 <div
-	class={`m-4 rounded-lg p-2 cursor-pointer ${selectedPlayer === index ? 'bg-[#f7e7b2]' : ''}`}
+	class={` rounded-sm p-2 basis-sm m-1 cursor-pointer ${$currentPlayer === index ? 'bg-[#f7e7b2]' : 'bg-white/50'}`}
 	role="button"
-	tabindex="0"
+	tabindex={index}
 	onclick={() => {
-		selectedPlayer = index
+		context.setCurrentPlayer(index)
 		resetScoredCards()
 	}}
 	onkeydown={(e) => {
 		if (e.key === 'Enter' || e.key === ' ') {
-			selectedPlayer = index
+			context.setCurrentPlayer(index)
 			e.preventDefault()
 		}
 	}}
 >
-	<h3>{player.name}</h3>
-	<p>{m.score()}: {player.score}</p>
-	<p>{m.round_score()}: {player.roundScore}</p>
-	<Button onclick={() => handleDeletePlayer(index)}>{m.delete()}</Button>
+	<strong>{player.name}</strong><br />
+	{m.score()}: {player.score}<br />
+	{m.round_score()}: {player.roundScore}
 </div>

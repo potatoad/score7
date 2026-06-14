@@ -165,8 +165,9 @@
 		disabled={numberOfScoredCards == 7 ? false : true}
 		class="{baseClasses} col-span-4"
 		style="--btn-color: {bonusButtonColor}; --btn-text: {bonusButtonText}"
-		onclick={() => {players[selectedPlayer].addToRoundScore(15)
-			numberOfScoredCards ++
+		onclick={() => {
+			players[selectedPlayer].addToRoundScore(15)
+			numberOfScoredCards++
 		}}>FLIP 7 (+15)</Button
 	>
 	<Button
@@ -198,6 +199,16 @@
 		class="{baseClasses} button-bonus"
 		style="--btn-color: {bonusButtonColor}; --btn-text: {bonusButtonText}"
 		onclick={() => players[selectedPlayer].addToRoundScore(10)}>+10</Button
+	>
+	<Button
+		class={baseClasses}
+		style="--btn-color: {bonusButtonColor}; --btn-text: {bonusButtonText}"
+		onclick={() => players[selectedPlayer].addToRoundScore(10)}>Reset</Button
+	>
+	<Button
+		class={baseClasses}
+		style="--btn-color: {bonusButtonColor}; --btn-text: {bonusButtonText}"
+		onclick={() => players[selectedPlayer].addToRoundScore(10)}>Score</Button
 	>
 </div>
 

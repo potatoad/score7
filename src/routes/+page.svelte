@@ -1,66 +1,11 @@
 <script lang="ts">
-	import {
-		Button,
-		ButtonGroup,
-		Input,
-		Navbar,
-		NavBrand,
-		NavHamburger,
-		NavLi,
-		NavUl,
-		DropdownItem,
-		DropdownDivider,
-		Dropdown
-	} from 'flowbite-svelte'
-	import { ChevronDownOutline } from 'flowbite-svelte-icons'
-	import ScoreButtons from '../components/ScoreButtons.svelte'
-	import { setLocale } from '$lib/paraglide/runtime'
-	import { m } from '$lib/paraglide/messages.js'
 	import PlayerCard from '../components/PlayerCard.svelte'
+	import ScoreButtons from '../components/ScoreButtons.svelte'
 
-	import { page } from '$app/state'
-	let activeUrl = $derived(page.url.pathname)
+	import { getPlayerContext } from '../contexts/players.svelte'
 
-	class Player {
-		name = $state('')
-		score = $state(0)
-		roundScore = $state(0)
-
-		addToRoundScore(score: number): void {
-			this.roundScore += score
-		}
-
-		multiplyRoundScore(multiplier: number): void {
-			this.roundScore *= multiplier
-		}
-
-		resetRoundScore(): void {
-			this.roundScore = 0
-		}
-
-		addToScore(score: number): void {
-			this.score += score
-		}
-
-		constructor(name: string, score = 0, roundScore = 0) {
-			this.name = name
-			this.score = score
-			this.roundScore = roundScore
-		}
-
-		toJSON(): { name: string; score: number; roundScore: number } {
-			return {
-				name: this.name,
-				score: this.score,
-				roundScore: this.roundScore
-			}
-		}
-	}
-
-	let players = $state<Player[]>([])
-	let currentName = $state('')
-	let selectedPlayer = $state(0)
-	let loaded = $state(false)
+	const context = getPlayerContext()
+	const players = context.players
 
 	let scoredCards = $state([true, true, true, true, true, true, true, true, true, true, true, true])
 
@@ -69,54 +14,14 @@
 	const resetScoredCards = (): void => {
 		scoredCards = [true, true, true, true, true, true, true, true, true, true, true, true]
 	}
-
-	$effect(() => {
-		if (!loaded) {
-			const savedPlayers = localStorage.getItem('score7_players')
-			if (savedPlayers) {
-				try {
-					const parsed = JSON.parse(savedPlayers)
-					players = parsed.map((p: any) => new Player(p.name, p.score, p.roundScore))
-				} catch (e) {
-					console.error('Failed to load players:', e)
-				}
-			}
-
-			const savedSelected = localStorage.getItem('score7_selectedPlayer')
-			if (savedSelected) {
-				selectedPlayer = parseInt(savedSelected, 10) || 0
-			}
-			loaded = true
-			return
-		}
-
-		localStorage.setItem('score7_players', JSON.stringify(players))
-		localStorage.setItem('score7_selectedPlayer', selectedPlayer.toString())
-	})
-
-	const handleNewPlayer = (): void => {
-		if (currentName) {
-			players.push(new Player(currentName))
-			currentName = ''
-		}
-	}
-
-	const handleDeletePlayer = (index: number): void => {
-		players.splice(index, 1)
-	}
-
-	const nextRound = (): void => {
-		players.forEach((player) => {
-			player.addToScore(player.roundScore)
-			player.resetRoundScore()
-		})
-		selectedPlayer = 0
-		numberOfScoredCards = 0
-		resetScoredCards()
-	}
 </script>
 
-<ScoreButtons {players} bind:selectedPlayer bind:scoredCards bind:numberOfScoredCards />
+<div class="flex flex-row mb-3">
+	{#each $players as player, index (player.id)}
+		<PlayerCard {player} {index} {resetScoredCards} />
+	{/each}
+</div>
+<ScoreButtons {players} bind:scoredCards bind:numberOfScoredCards />
 <!-- 
 <div class="max-w-4xl mx-auto px-4">
 	<div>

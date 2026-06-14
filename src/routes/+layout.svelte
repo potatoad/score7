@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { setLocale } from '$lib/paraglide/runtime'
+	import { setPlayerContext } from '../contexts/players.svelte'
 	import {
 		Navbar,
 		NavBrand,
@@ -11,8 +12,12 @@
 	} from 'flowbite-svelte'
 	import { ChevronDownOutline } from 'flowbite-svelte-icons'
 	import '../app.css'
+	import logo from '$lib/assets/logo.svg'
 
 	let { children } = $props()
+
+	// initialize global players context for the app
+	setPlayerContext()
 
 	import { page } from '$app/state'
 	let activeUrl = $derived(page.url.pathname)
@@ -20,18 +25,7 @@
 
 <Navbar class="bg-[#FFF6D9] border-b-8 border-[#EC6353]">
 	<NavBrand href="/">
-		<span
-			class="self-center text-3xl font-bold whitespace-nowrap text-[#FEDD50]"
-			style="text-shadow:
-                -2px -2px 1px #30348F,
-                2px -2px 1px #30348F,
-                -2px 2px 1px #30348F,
-                2px 2px 1px #30348F,
-                -3px 0px 1px #30348F,
-                3px 0px 1px #30348F,
-                0px -3px 1px #30348F,
-                0px 3px 1px #30348F;">Score7</span
-		>
+		<img src={logo} alt="Score 7 logo" width="200px"/>
 	</NavBrand>
 	<NavHamburger />
 	<NavUl {activeUrl}>
