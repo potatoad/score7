@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { m } from '$lib/paraglide/messages.js'
 	import PlayerCard from '../components/PlayerCard.svelte'
 	import ScoreButtons from '../components/ScoreButtons.svelte'
 
@@ -10,7 +11,7 @@
 </script>
 
 <div class="text-2xl text-center mb-3 mt-0">
-	Round: <span class="font-bold round-number">{$roundNumber}</span>
+	{m.round()}: <span class="font-bold round-number">{$roundNumber}</span>
 </div>
 
 <div class="flex flex-wrap mb-2">

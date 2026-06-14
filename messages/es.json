@@ -2,7 +2,20 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"add_player": "Agregar jugador",
 	"score": "Puntuación",
-	"round_score":"Puntuación de la ronda",
+	"score_verb": "Puntuar",
+	"round_score": "Ronda",
 	"delete": "Eliminar",
-	"next_round":"Próxima ronda"
+	"next_round": "Próxima ronda",
+	"reset_hand": "Resetear mano",
+	"no_players": "No hay jugadores",
+	"setup_players": "Configurar jugadores",
+	"add_player_placeholder": "Nombre del jugador",
+	"language": "Idioma",
+	"theme": "Tema",
+	"theme_light": "Claro",
+	"theme_dark": "Oscuro",
+	"theme_auto": "Automático",
+	"home": "Inicio",
+	"help": "Ayuda",
+	"round": "Ronda"
 }

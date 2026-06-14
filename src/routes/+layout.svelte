@@ -21,6 +21,7 @@
 	setPlayerContext()
 
 	import { page } from '$app/state'
+	import { m } from '$lib/paraglide/messages'
 	let activeUrl = $derived(page.url.pathname)
 
 	let theme = $state<'light' | 'dark' | 'auto'>('auto')
@@ -62,24 +63,26 @@
 	</NavBrand>
 	<NavHamburger />
 	<NavUl {activeUrl} class="mt-3 mx-auto w-[95%]">
-		<NavLi href="/">Home</NavLi>
-		<NavLi href="/players">Set up players</NavLi>
+		<NavLi href="/">{m.home()}</NavLi>
+		<NavLi href="/players">{m.setup_players()}</NavLi>
 		<NavLi class="cursor-pointer">
-			Language<ChevronDownOutline class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white" />
+			{m.language()}<ChevronDownOutline
+				class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white"
+			/>
 		</NavLi>
 		<Dropdown simple class="w-44">
 			<DropdownItem onclick={() => setLocale('en')}>English</DropdownItem>
 			<DropdownItem onclick={() => setLocale('es')}>Espanol</DropdownItem>
 		</Dropdown>
 		<NavLi class="cursor-pointer">
-			Theme ({theme.charAt(0).toUpperCase() + theme.slice(1)})<ChevronDownOutline
+			{m.theme()} ({theme.charAt(0).toUpperCase() + theme.slice(1)})<ChevronDownOutline
 				class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white"
 			/>
 		</NavLi>
 		<Dropdown simple class="w-44">
-			<DropdownItem onclick={() => applyTheme('light')}>Light</DropdownItem>
-			<DropdownItem onclick={() => applyTheme('dark')}>Dark</DropdownItem>
-			<DropdownItem onclick={() => applyTheme('auto')}>Auto</DropdownItem>
+			<DropdownItem onclick={() => applyTheme('light')}>{m.theme_light()}</DropdownItem>
+			<DropdownItem onclick={() => applyTheme('dark')}>{m.theme_dark()}</DropdownItem>
+			<DropdownItem onclick={() => applyTheme('auto')}>{m.theme_auto()}</DropdownItem>
 		</Dropdown>
 	</NavUl>
 </Navbar>

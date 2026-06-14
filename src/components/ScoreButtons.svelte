@@ -139,7 +139,7 @@
 		}}
 	/>
 	<FlipButton
-		number={m.score()}
+		number={m.score_verb()}
 		icon={AwardOutline}
 		color={scoreButtonColor}
 		disabled={false}
