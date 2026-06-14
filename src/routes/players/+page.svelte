@@ -2,6 +2,7 @@
 	import { Button, Input } from 'flowbite-svelte'
 	import PlayerCard from '../../components/PlayerCard.svelte'
 	import { getPlayerContext } from '../../contexts/players.svelte'
+	import { m } from '$lib/paraglide/messages'
 
 	const context = getPlayerContext()
 	const players = context.players
@@ -16,19 +17,19 @@
 </script>
 
 <div class="p-4">
-	<h2>Set up players</h2>
+	<h2>{m.setup_players()}</h2>
 	<div class="my-2 flex flex-row">
 		<Input
-			placeholder="Player name"
+			placeholder={m.add_player_placeholder()}
 			bind:value={name}
 			onkeydown={(e) => (e.key === 'Enter' ? handleAdd() : undefined)}
 		/>
-		<Button class="ml-3" onclick={handleAdd}>Add</Button>
-		<Button class="ml-3" color="dark" onclick={context.resetPlayers}>Reset</Button>
+		<Button class="ml-3" onclick={handleAdd}>{m.add_player()}</Button>
+		<Button class="ml-3" color="dark" onclick={context.resetPlayers}>{m.reset_hand()}</Button>
 	</div>
 
 	{#if $players.length === 0}
-		<p>No players yet.</p>
+		<p>{m.no_players()}</p>
 	{/if}
 
 	<div>

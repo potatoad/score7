@@ -1,12 +1,16 @@
 <script lang="ts">
+	import type { Component } from 'svelte'
+
 	let {
 		number,
+		icon,
 		color,
 		disabled = false,
 		onclick,
 		className
 	}: {
 		number: number | string
+		icon?: Component<any>
 		color: string
 		disabled: boolean
 		onclick: () => void
@@ -35,10 +39,19 @@
 				onclick()
 			}}
 		>
-			{number}
+			{#if icon}
+				<svelte:component this={icon} class="shrink-0 h-10 w-10" />
+				<span class="text-sm">{number}</span>
+			{:else}
+				{number}
+			{/if}
 		</div>
 		<div class="{baseClasses} button-number button back rounded-lg" style="--btn-color: {color}">
-			<span class="text-2xl">{number}</span>
+			{#if icon}
+				<svelte:component this={icon} />
+			{:else}
+				<span class="text-2xl">{number}</span>
+			{/if}
 		</div>
 	</div>
 </div>
@@ -53,8 +66,8 @@
 		cursor: pointer;
 		font-weight: 400;
 		letter-spacing: 2px;
-		height: 100px;
-		width: calc(0.75 * 100px);
+		height: 72px;
+		width: 72px;
 		-webkit-perspective: 1000;
 		-ms-perspective: 1000;
 		perspective: 1000;
@@ -70,8 +83,8 @@
 
 		.button {
 			color: white;
-			height: 100px;
-			width: calc(0.75 * 100px);
+			height: 72px;
+			width: 72px;
 			backface-visibility: hidden;
 			position: absolute;
 			top: 0;

@@ -2,6 +2,8 @@
 	import { Button } from 'flowbite-svelte'
 	import { getPlayerContext } from '../contexts/players.svelte'
 	import FlipButton from './FlipButton.svelte'
+	import { AwardOutline } from 'flowbite-svelte-icons'
+	import { m } from '$lib/paraglide/messages'
 	const context = getPlayerContext()
 	const currentPlayer = context.currentPlayer
 	const players = context.players
@@ -26,8 +28,9 @@
 		$players = $players // trigger store reactivity
 	}
 
-	function resetScore(): void {
+	function resetHand(): void {
 		$players[$currentPlayer].roundScore = 0
+		resetScoredCards()
 		$players = $players // trigger store reactivity
 	}
 
@@ -41,6 +44,7 @@
 	}
 
 	const buttonColors = [
+		'#F1207C',
 		'#C5B09D',
 		'#E7E923',
 		'#F44D5F',
@@ -53,15 +57,12 @@
 		'#EA1E29',
 		'#7BA4D0',
 		'#998678',
-		'#F9BE60',
-		'#F9BE60',
-		'#F9BE60',
-		'#F9BE60',
-		'#F9BE60',
 		'#F9BE60'
 	]
 
 	const bonusButtonColor = '#F9BE60'
+
+	const scoreButtonColor = '#3AB259'
 
 	const isButtonDisabled = (button: number): boolean => {
 		if (numberOfScoredCards >= 7) {
@@ -72,14 +73,14 @@
 	}
 </script>
 
-<div class="grid grid-cols-4 gap-2 sm:w-fit m-auto relative">
-	{#each { length: 12 }, number}
+<div class="grid grid-cols-5 gap-2 sm:w-fit m-auto relative">
+	{#each { length: 13 }, number}
 		<FlipButton
-			number={number + 1}
+			{number}
 			color={buttonColors[number]}
 			disabled={isButtonDisabled(number)}
 			onclick={() => {
-				addScore(number + 1)
+				addScore(number)
 				scoredCards[number] = false
 				numberOfScoredCards++
 				if (numberOfScoredCards === 7) {
@@ -137,15 +138,16 @@
 			addScore(10)
 		}}
 	/>
-	<div class="col-span-2 flex flex-col gap-2">
-		<Button
-			color="alternative"
-			size="sm"
-			onclick={() => {
-				resetScoredCards()
-				resetScore()
-			}}>Reset Hand</Button
-		>
-		<Button class="flex-1" size="lg" onclick={() => scoreRound()}>Score</Button>
-	</div>
+	<FlipButton
+		number={m.score()}
+		icon={AwardOutline}
+		color={scoreButtonColor}
+		disabled={false}
+		onclick={() => {
+			scoreRound()
+		}}
+	/>
 </div>
+<Button size="xs" color="alternative" class="mt-2 mx-auto block" onclick={() => resetHand()}
+	>{m.reset_hand()}</Button
+>

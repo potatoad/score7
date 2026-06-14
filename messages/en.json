@@ -2,7 +2,18 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"add_player": "Add Player",
 	"score": "Score",
-	"round_score":"Round",
-	"delete":"Delete",
-	"next_round":"Next Round"
+	"round": "Round",
+	"delete": "Delete",
+	"next_round": "Next Round",
+	"reset_hand": "Reset Hand",
+	"no_players": "No Players",
+	"setup_players": "Setup Players",
+	"add_player_placeholder": "Player Name",
+	"language": "Language",
+	"theme": "Theme",
+	"theme_light": "Light",
+	"theme_dark": "Dark",
+	"theme_auto": "Auto",
+	"home": "Home",
+	"help": "Help"
 }
