@@ -2,7 +2,7 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"add_player": "Add Player",
 	"score": "Score",
-	"round_score":"Round score",
+	"round_score":"Round",
 	"delete":"Delete",
 	"next_round":"Next Round"
 }

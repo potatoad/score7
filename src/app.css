@@ -1,24 +1,23 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
 
-@source "../node_modules/flowbite-svelte/dist";
-@source "../node_modules/flowbite-svelte-icons/dist";
+@source '../node_modules/flowbite-svelte/dist';
+@source '../node_modules/flowbite-svelte-icons/dist';
 
 @theme {
 	--z-index-100: 100;
 
-	--color-primary-50: #fdf4ff;
-	--color-primary-100: #fae8ff;
-	--color-primary-200: #f5d0fe;
-	--color-primary-300: #f0abfc;
-	--color-primary-400: #e879f9;
-	--color-primary-500: #d946ef;
-	--color-primary-600: #c026d3;
-	--color-primary-700: #a21caf;
-	--color-primary-800: #86198f;
-	--color-primary-900: #701a75;
-  
+	--color-primary-50: #acadeb;
+	--color-primary-100: #8d8ed4;
+	--color-primary-200: #6e6ea8;
+	--color-primary-300: #4f5082;
+	--color-primary-400: #32338d;
+	--color-primary-500: #151567;
+	--color-primary-600: #000051;
+	--color-primary-700: #000034;
+	--color-primary-800: #000022;
+	--color-primary-900: #000011;
 }
 
 @layer base {
@@ -42,7 +41,7 @@
 		line-height: 1.5;
 		-moz-tab-size: 4;
 		tab-size: 4;
-		background-color: #09A3A3;
+		@apply bg-[#09A3A3] dark:bg-[#0e3d3d];
 	}
 
 	h1,
@@ -56,7 +55,7 @@
 	}
 
 	h1 {
-		@apply text-primary-800 dark:text-primary-400 my-8 text-3xl;
+		@apply my-8 text-3xl text-primary-800 dark:text-primary-400;
 	}
 
 	h2 {
@@ -83,6 +82,6 @@
 @layer components {
 	/* overwrite runeswebkit.css using !important */
 	.dark_bg_theme {
-		@apply dark:bg-stone-900; 
+		@apply dark:bg-stone-900;
 	}
 }

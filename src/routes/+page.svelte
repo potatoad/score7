@@ -6,34 +6,19 @@
 
 	const context = getPlayerContext()
 	const players = context.players
-
-	let scoredCards = $state([true, true, true, true, true, true, true, true, true, true, true, true])
-
-	let numberOfScoredCards = $state(0)
-
-	const resetScoredCards = (): void => {
-		scoredCards = [true, true, true, true, true, true, true, true, true, true, true, true]
-	}
+	const roundNumber = context.roundNumber
 </script>
 
-<div class="flex flex-row mb-3">
-	{#each $players as player, index (player.id)}
-		<PlayerCard {player} {index} {resetScoredCards} />
+<div class="text-2xl text-center mb-3 mt-0">
+	Round: <span class="font-bold round-number">{$roundNumber}</span>
+</div>
+
+<div class="flex flex-wrap mb-2">
+	{#each $players as _, index (index)}
+		<div class="flex-1 min-w-[100px]">
+			<PlayerCard {index} />
+		</div>
 	{/each}
 </div>
-<ScoreButtons {players} bind:scoredCards bind:numberOfScoredCards />
-<!-- 
-<div class="max-w-4xl mx-auto px-4">
-	<div>
-		<Input class="mb-4" placeholder="Name" type="text" bind:value={currentName} />
-		<Button class="mb-4" onclick={() => handleNewPlayer()}>{m.add_player()}</Button>
-		<div class="grid grid-cols-4">
-			{#each players as player, index (index + 1)}
-				<PlayerCard {player} bind:selectedPlayer {index} {handleDeletePlayer} {resetScoredCards} />
-			{/each}
-		</div>
-		<Button class="mb-4" onclick={() => nextRound()}>{m.next_round()}</Button>
-		Scored Cards: {numberOfScoredCards}
-		<ScoreButtons {players} bind:selectedPlayer bind:scoredCards bind:numberOfScoredCards />
-	</div>
-</div> -->
+
+<ScoreButtons />
