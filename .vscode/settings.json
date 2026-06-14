@@ -1,0 +1,11 @@
+{
+	"prisma-smart-formatter.typescript.defaultFormatter": "esbenp.prettier-vscode",
+	"prisma-smart-formatter.typescriptreact.defaultFormatter": "vscode.typescript-language-features",
+	"cSpell.words": ["paraglide"],
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}
