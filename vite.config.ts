@@ -1,9 +1,9 @@
-import tailwindcss from '@tailwindcss/vite';
-import { mdsvex } from 'mdsvex';
-import { paraglideVitePlugin } from '@inlang/paraglide-js';
-import adapter from '@sveltejs/adapter-auto';
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite'
+import { mdsvex } from 'mdsvex'
+import { paraglideVitePlugin } from '@inlang/paraglide-js'
+import adapter from '@sveltejs/adapter-static'
+import { sveltekit } from '@sveltejs/kit/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
 	plugins: [
@@ -24,4 +24,4 @@ export default defineConfig({
 		}),
 		paraglideVitePlugin({ project: './project.inlang', outdir: './src/lib/paraglide' })
 	]
-});
+})
