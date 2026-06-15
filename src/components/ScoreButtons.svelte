@@ -60,9 +60,28 @@
 		'#F9BE60'
 	]
 
+	const buttonColorsDark = [
+		'#b90c58',
+		'#a9896d',
+		'#adae11',
+		'#e60e26',
+		'#319092',
+		'#27783c',
+		'#92367e',
+		'#c44c3d',
+		'#8dc940',
+		'#b06c0f',
+		'#ab1018',
+		'#437dbc',
+		'#706055',
+		'#8f5a05'
+	]
+
 	const bonusButtonColor = '#F9BE60'
+	const bonusButtonColorDark = '#8f5a05'
 
 	const scoreButtonColor = '#3AB259'
+	const scoreButtonColorDark = '#27783c'
 
 	const isButtonDisabled = (button: number): boolean => {
 		if (numberOfScoredCards >= 7) {
@@ -73,11 +92,12 @@
 	}
 </script>
 
-<div class="grid grid-cols-5 gap-2 sm:w-fit m-auto relative">
+<div class="grid grid-cols-4 gap-2 w-full m-auto relative">
 	{#each { length: 13 }, number}
 		<FlipButton
 			{number}
 			color={buttonColors[number]}
+			colorDark={buttonColorsDark[number]}
 			disabled={isButtonDisabled(number)}
 			onclick={() => {
 				addScore(number)
@@ -93,6 +113,7 @@
 	<FlipButton
 		number="x2"
 		color={bonusButtonColor}
+		colorDark={bonusButtonColorDark}
 		disabled={false}
 		onclick={() => {
 			multiplyScore(2)
@@ -101,6 +122,7 @@
 	<FlipButton
 		number="+2"
 		color={bonusButtonColor}
+		colorDark={bonusButtonColorDark}
 		disabled={false}
 		onclick={() => {
 			addScore(2)
@@ -109,6 +131,7 @@
 	<FlipButton
 		number="+4"
 		color={bonusButtonColor}
+		colorDark={bonusButtonColorDark}
 		disabled={false}
 		onclick={() => {
 			addScore(4)
@@ -117,6 +140,7 @@
 	<FlipButton
 		number="+6"
 		color={bonusButtonColor}
+		colorDark={bonusButtonColorDark}
 		disabled={false}
 		onclick={() => {
 			addScore(6)
@@ -125,6 +149,7 @@
 	<FlipButton
 		number="+8"
 		color={bonusButtonColor}
+		colorDark={bonusButtonColorDark}
 		disabled={false}
 		onclick={() => {
 			addScore(8)
@@ -133,6 +158,7 @@
 	<FlipButton
 		number="+10"
 		color={bonusButtonColor}
+		colorDark={bonusButtonColorDark}
 		disabled={false}
 		onclick={() => {
 			addScore(10)
@@ -142,6 +168,7 @@
 		number={m.score_verb()}
 		icon={AwardOutline}
 		color={scoreButtonColor}
+		colorDark={scoreButtonColorDark}
 		disabled={false}
 		onclick={() => {
 			scoreRound()

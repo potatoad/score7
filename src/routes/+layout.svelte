@@ -88,7 +88,9 @@
 </Navbar>
 
 <div class="px-2 mt-2">
-	<div class="bg-[#80CBD0] dark:bg-[#295a5c] max-w-3xl mx-auto rounded-2xl p-3">
+	<div
+		class="bg-[#80CBD0] dark:bg-[#295a5c] text-primary-500 dark:text-primary-50 max-w-3xl mx-auto rounded-2xl p-3"
+	>
 		{@render children()}
 	</div>
 </div>

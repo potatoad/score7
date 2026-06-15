@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { Component } from 'svelte'
+	import { onMount, type Component } from 'svelte'
 
 	let {
 		number,
 		icon,
 		color,
+		colorDark,
 		disabled = false,
 		onclick,
 		className
@@ -12,6 +13,7 @@
 		number: number | string
 		icon?: Component<any>
 		color: string
+		colorDark: string
 		disabled: boolean
 		onclick: () => void
 		className?: string
@@ -19,13 +21,28 @@
 
 	const baseClasses =
 		'box-border border border-transparent shadow-xs font-bold rounded-base text-lg px-4 py-2.5 text-center inline-flex items-center button-card'
+
+	function isDark(): boolean {
+		if (typeof window === 'undefined') return false
+		const theme = localStorage.getItem('score7:theme')
+		if (theme === 'dark') {
+			return true
+		}
+		if (theme === 'light') {
+			return false
+		}
+		if (theme === 'auto') {
+			return window.matchMedia('(prefers-color-scheme: dark)').matches
+		}
+		return false
+	}
 </script>
 
 <div class="button-container button-flip-horizontal {className}">
 	<div class="flipper flipper-flip-horizontal" class:flipped={disabled}>
 		<div
 			class="{baseClasses} button-number button front rounded-lg"
-			style="--btn-color: {color}"
+			style="--btn-color: {isDark() ? colorDark : color}"
 			role="button"
 			tabindex={0}
 			onkeydown={(e) => {
@@ -57,17 +74,13 @@
 </div>
 
 <style lang="scss">
-	.button-number {
-		background-color: var(--btn-color) !important;
-	}
-
 	.button-container {
 		display: inline-block;
 		cursor: pointer;
 		font-weight: 400;
 		letter-spacing: 2px;
 		height: 72px;
-		width: 72px;
+		width: 100%;
 		-webkit-perspective: 1000;
 		-ms-perspective: 1000;
 		perspective: 1000;
@@ -84,7 +97,7 @@
 		.button {
 			color: white;
 			height: 72px;
-			width: 72px;
+			width: 100%;
 			backface-visibility: hidden;
 			position: absolute;
 			top: 0;

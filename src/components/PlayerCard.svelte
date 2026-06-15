@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class={` rounded-sm p-2 basis-sm m-1 cursor-pointer ${$currentPlayer === index ? 'bg-[#f7e7b2]' : 'bg-white/50'}`}
+	class={`rounded-sm p-2 basis-sm m-1 cursor-pointer ${$currentPlayer === index ? 'bg-[#f7e7b2] dark:bg-[#463b18]' : 'bg-white/50 dark:bg-black/50'}`}
 	role="button"
 	tabindex={0}
 	onclick={() => {
