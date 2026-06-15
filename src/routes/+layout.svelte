@@ -14,10 +14,10 @@
 	import '../app.css'
 	import logo from '$lib/assets/logo.svg'
 	import { onMount } from 'svelte'
+	import { themeState } from '../theme.svelte'
 
 	let { children } = $props()
 
-	// initialize global players context for the app
 	setPlayerContext()
 
 	import { page } from '$app/state'
@@ -27,10 +27,9 @@
 	let theme = $state<'light' | 'dark' | 'auto'>('auto')
 
 	function applyTheme(t: 'light' | 'dark' | 'auto'): void {
-		theme = t
+		themeState.current = t
 		if (typeof window === 'undefined') return
 
-		localStorage.setItem('score7:theme', t)
 		const isDark =
 			t === 'dark' || (t === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)
 		if (isDark) {
@@ -41,12 +40,11 @@
 	}
 
 	onMount(() => {
-		const storedTheme = localStorage.getItem('score7:theme') as 'light' | 'dark' | 'auto' | null
-		applyTheme(storedTheme ?? 'auto')
+		applyTheme(themeState.current as 'light' | 'dark' | 'auto')
 
 		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 		const handleChange = (): void => {
-			if (theme === 'auto') {
+			if (themeState.current === 'auto') {
 				applyTheme('auto')
 			}
 		}
@@ -62,12 +60,12 @@
 		<img src={logo} alt="Score 7 logo" width="200px" />
 	</NavBrand>
 	<NavHamburger />
-	<NavUl {activeUrl} class="mt-3 mx-auto w-[95%]">
+	<NavUl {activeUrl} class="mt-3  w-[95%]">
 		<NavLi href="/">{m.home()}</NavLi>
 		<NavLi href="/players">{m.setup_players()}</NavLi>
 		<NavLi class="cursor-pointer">
 			{m.language()}<ChevronDownOutline
-				class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white"
+				class="text-[#30348f] ms-2 inline h-6 w-6 dark:text-white"
 			/>
 		</NavLi>
 		<Dropdown simple class="w-44">
@@ -76,7 +74,7 @@
 		</Dropdown>
 		<NavLi class="cursor-pointer">
 			{m.theme()} ({theme.charAt(0).toUpperCase() + theme.slice(1)})<ChevronDownOutline
-				class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white"
+				class="text-[#30348f] ms-2 inline h-6 w-6 dark:text-white"
 			/>
 		</NavLi>
 		<Dropdown simple class="w-44">

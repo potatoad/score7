@@ -20,6 +20,8 @@
 		className?: string
 	} = $props()
 
+	const Icon = $derived(icon)
+
 	const baseClasses =
 		'box-border border border-transparent shadow-xs font-bold rounded-base text-lg px-4 py-2.5 text-center inline-flex items-center button-card'
 
@@ -29,6 +31,7 @@
         if (themeState.current === 'light') return false
         return window.matchMedia('(prefers-color-scheme: dark)').matches
     })
+
 </script>
 
 <div class="button-container button-flip-horizontal {className}">
@@ -50,7 +53,7 @@
 			}}
 		>
 			{#if icon}
-				<svelte:component this={icon} class="shrink-0 h-10 w-10" />
+				<Icon class="shrink-0 h-10 w-10" />
 				<span class="text-sm">{number}</span>
 			{:else}
 				{number}
@@ -58,7 +61,7 @@
 		</div>
 		<div class="{baseClasses} button-number button back rounded-lg" style="--btn-color: {isDark ? colorDark : color}">
 			{#if icon}
-				<svelte:component this={icon} />
+				<Icon />
 			{:else}
 				<span class="text-2xl">{number}</span>
 			{/if}

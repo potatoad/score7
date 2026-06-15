@@ -25,7 +25,7 @@
 			onkeydown={(e) => (e.key === 'Enter' ? handleAdd() : undefined)}
 		/>
 		<Button class="ml-3" onclick={handleAdd}>{m.add_player()}</Button>
-		<Button class="ml-3" color="dark" onclick={context.resetPlayers}>{m.reset_hand()}</Button>
+		<Button class="ml-3" color="dark" onclick={context.resetPlayers}>{m.reset_players()}</Button>
 	</div>
 
 	{#if $players.length === 0}

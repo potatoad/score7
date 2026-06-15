@@ -1,0 +1,42 @@
+{
+  "icon": {
+    "desktop": {
+      "regularIconTransformation": {
+        "type": "background",
+        "backgroundColor": "#80CBD0",
+        "backgroundRadius": 0.7,
+        "imageScale": 0.7
+      },
+      "darkIconType": "regular",
+      "darkIconTransformation": {
+        "type": "background",
+        "backgroundColor": "#295a5c",
+        "backgroundRadius": 0.7,
+        "imageScale": 0.7
+      }
+    },
+    "touch": {
+      "transformation": {
+        "type": "background",
+        "backgroundColor": "#80CBD0",
+        "backgroundRadius": 0,
+        "imageScale": 0.7
+      },
+      "appTitle": "Score7"
+    },
+    "webAppManifest": {
+      "transformation": {
+        "type": "background",
+        "backgroundColor": "#80CBD0",
+        "backgroundRadius": 0,
+        "imageScale": 0.7
+      },
+      "backgroundColor": "#295a5c",
+      "name": "Score7",
+      "shortName": "Score7",
+      "themeColor": "#295a5c"
+    }
+  },
+  "path": "/",
+  "skipMetadataInjection": true
+}

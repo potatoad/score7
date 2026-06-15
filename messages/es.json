@@ -4,9 +4,11 @@
 	"score": "Puntuación",
 	"score_verb": "Puntuar",
 	"round_score": "Ronda",
+	"round": "Ronda",
 	"delete": "Eliminar",
-	"next_round": "Próxima ronda",
+	"next_round": "Next Round",
 	"reset_hand": "Resetear mano",
+	"reset_players": "Resetear jugadores",
 	"no_players": "No hay jugadores",
 	"setup_players": "Configurar jugadores",
 	"add_player_placeholder": "Nombre del jugador",
@@ -14,8 +16,7 @@
 	"theme": "Tema",
 	"theme_light": "Claro",
 	"theme_dark": "Oscuro",
-	"theme_auto": "Automático",
+	"theme_auto": "Auto",
 	"home": "Inicio",
-	"help": "Ayuda",
-	"round": "Ronda"
+	"help": "Ayuda"
 }

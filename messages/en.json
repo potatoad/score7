@@ -8,6 +8,7 @@
 	"delete": "Delete",
 	"next_round": "Next Round",
 	"reset_hand": "Reset Hand",
+	"reset_players": "Reset Players",
 	"no_players": "No Players",
 	"setup_players": "Setup Players",
 	"add_player_placeholder": "Player Name",
