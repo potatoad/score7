@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onMount, type Component } from 'svelte'
+	import { type Component } from 'svelte'
+	import { themeState } from '../theme.svelte.ts'
 
 	let {
 		number,
@@ -22,27 +23,19 @@
 	const baseClasses =
 		'box-border border border-transparent shadow-xs font-bold rounded-base text-lg px-4 py-2.5 text-center inline-flex items-center button-card'
 
-	function isDark(): boolean {
-		if (typeof window === 'undefined') return false
-		const theme = localStorage.getItem('score7:theme')
-		if (theme === 'dark') {
-			return true
-		}
-		if (theme === 'light') {
-			return false
-		}
-		if (theme === 'auto') {
-			return window.matchMedia('(prefers-color-scheme: dark)').matches
-		}
-		return false
-	}
+	let isDark = $derived.by(() => {
+        if (typeof window === 'undefined') return false
+        if (themeState.current === 'dark') return true
+        if (themeState.current === 'light') return false
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+    })
 </script>
 
 <div class="button-container button-flip-horizontal {className}">
 	<div class="flipper flipper-flip-horizontal" class:flipped={disabled}>
 		<div
 			class="{baseClasses} button-number button front rounded-lg"
-			style="--btn-color: {isDark() ? colorDark : color}"
+			style="--btn-color: {isDark ? colorDark : color}"
 			role="button"
 			tabindex={0}
 			onkeydown={(e) => {
@@ -63,7 +56,7 @@
 				{number}
 			{/if}
 		</div>
-		<div class="{baseClasses} button-number button back rounded-lg" style="--btn-color: {color}">
+		<div class="{baseClasses} button-number button back rounded-lg" style="--btn-color: {isDark ? colorDark : color}">
 			{#if icon}
 				<svelte:component this={icon} />
 			{:else}
