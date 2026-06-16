@@ -18,6 +18,9 @@
 
 	let { children } = $props()
 
+	const activeClass = 'dark:text-primary-800'
+	const nonActiveClass = 'dark:text-red text-red'
+
 	setPlayerContext()
 
 	import { page } from '$app/state'
@@ -60,12 +63,12 @@
 		<img src={logo} alt="Score 7 logo" width="200px" />
 	</NavBrand>
 	<NavHamburger />
-	<NavUl {activeUrl} class="mt-3  w-[95%]">
+	<NavUl {activeUrl} class="mt-3  w-[95%]" classes={{active: activeClass, nonActive: nonActiveClass}}>
 		<NavLi href="/">{m.home()}</NavLi>
 		<NavLi href="/players">{m.setup_players()}</NavLi>
 		<NavLi class="cursor-pointer">
 			{m.language()}<ChevronDownOutline
-				class="text-[#30348f] ms-2 inline h-6 w-6 dark:text-white"
+				class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white"
 			/>
 		</NavLi>
 		<Dropdown simple class="w-44">
@@ -74,7 +77,7 @@
 		</Dropdown>
 		<NavLi class="cursor-pointer">
 			{m.theme()} ({theme.charAt(0).toUpperCase() + theme.slice(1)})<ChevronDownOutline
-				class="text-[#30348f] ms-2 inline h-6 w-6 dark:text-white"
+				class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white"
 			/>
 		</NavLi>
 		<Dropdown simple class="w-44">
