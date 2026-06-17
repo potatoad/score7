@@ -45,7 +45,7 @@
 </script>
 
 <div class="flex justify-center">
-	<div class="yellow max-w-3xl md:min-w-lg flex flex-col">
+	<div class="yellow max-w-lg grow-1 flex flex-col">
 		<div
 			class="oval top bg-cream dark:bg-cream-dark flex flex-col justify-center items-center absolute"
 		>

@@ -10,7 +10,7 @@
 	const roundNumber = context.roundNumber
 </script>
 
-<div class="text-2xl text-center mb-3 mt-0">
+<div class="text-2xl text-center mb-3 mt-0 text-dark-blue-dark dark:text-yellow">
 	{m.round()}: <span class="font-bold round-number">{$roundNumber}</span>
 </div>
 

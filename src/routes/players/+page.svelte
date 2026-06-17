@@ -16,16 +16,20 @@
 	}
 </script>
 
-<div class="p-4">
-	<h2>{m.setup_players()}</h2>
-	<div class="my-2 flex flex-row">
+<div class="text-2xl text-center mb-4 mt-0 text-dark-blue-dark dark:text-yellow">
+	<span>{m.setup_players()}</span>
+</div>
+<div class="px-4">
+	<div class="my-2 flex flex-col sm:flex-row">
 		<Input
 			placeholder={m.add_player_placeholder()}
 			bind:value={name}
 			onkeydown={(e) => (e.key === 'Enter' ? handleAdd() : undefined)}
 		/>
-		<Button class="ml-3" onclick={handleAdd}>{m.add_player()}</Button>
-		<Button class="ml-3" color="dark" onclick={context.resetPlayers}>{m.reset_players()}</Button>
+		<Button class="sm:ml-3 sm:mt-0 mt-2" onclick={handleAdd}>{m.add_player()}</Button>
+		<Button class="sm:ml-3 sm:mt-0 mt-2" color="dark" onclick={context.resetPlayers}
+			>{m.reset_players()}</Button
+		>
 	</div>
 
 	{#if $players.length === 0}
