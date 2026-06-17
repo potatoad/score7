@@ -19,7 +19,7 @@
 <div class="text-2xl text-center mb-4 mt-0 text-dark-blue-dark dark:text-yellow">
 	<span>{m.setup_players()}</span>
 </div>
-<div class="px-4">
+<div class="px-0">
 	<div class="my-2 flex flex-col sm:flex-row">
 		<Input
 			placeholder={m.add_player_placeholder()}

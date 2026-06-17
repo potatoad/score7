@@ -65,12 +65,12 @@
 		}
 	}}
 >
-	<div class="flex flex-row justify-between">
-		<div class="flex flex-col min-w-0">
+	<div class="flex flex-wrap gap-1">
+		<div class="flex grow flex-col min-w-30">
 			{#if !editName}
 				<h3 class="my-0 text-base font-bold truncate">{$players[index].name}</h3>
 			{:else}
-				<Input type="text" bind:value={newName} size="sm"></Input>
+				<Input style="width:180px;" type="text" bind:value={newName}></Input>
 			{/if}
 			<div class="flex flex-row">
 				<svg
@@ -85,7 +85,7 @@
 				{#if !editScore}
 					<p class="text-sm my-0">: {$players[index].score}</p>
 				{:else}
-					<Input type="number" bind:value={newScore} size="sm"></Input>
+					<Input class="ml-1" style="width:150px;" type="number" bind:value={newScore}></Input>
 				{/if}
 			</div>
 			<div class="flex flex-row">
@@ -101,62 +101,71 @@
 				<p class="text-sm my-0">: {$players[index].roundScore}</p>
 			</div>
 		</div>
-		<div class={page.url.pathname == '/' ? 'hidden' : 'block'}>
-			<div class="flex flex-row gap-1">
-				<div class="flex flex-col gap-1 justify-between">
-					<Button size="xs" onclick={(e: MouseEvent) => moveUp(e)}><ArrowUpOutline /></Button>
-					<Button size="xs" onclick={(e: MouseEvent) => moveDown(e)}><ArrowDownOutline /></Button>
+		<div class={page.url.pathname == '/' ? 'hidden' : ''}>
+			<div>
+				<div class="flex flex-col sm:flex-row gap-1">
+					<div class="flex flex-col gap-1">
+						<Button class="flex grow " size="xs" onclick={(e: MouseEvent) => moveUp(e)}
+							><ArrowUpOutline /></Button
+						>
+						<Button class="flex grow" size="xs" onclick={(e: MouseEvent) => moveDown(e)}
+							><ArrowDownOutline /></Button
+						>
+					</div>
 				</div>
-				<div class="flex flex-col gap-1">
-					<Button
-						size="xs"
-						class={!editName ? '' : 'hidden'}
-						onclick={() => {
-							editName = true
-						}}>Edit player name</Button
-					>
-					<Button
-						size="xs"
-						class={!editName ? 'hidden' : ''}
-						onclick={() => {
-							$players[index].name = newName
-							editName = false
-						}}>Save name</Button
-					>
+			</div>
+		</div>
+		<div class="basis-full sm:hidden"></div>
+		<div class={page.url.pathname == '/' ? 'hidden' : 'w-full sm:w-30'}>
+			<div class="flex flex-row sm:flex-col gap-1 justify-center">
+				<Button
+					size="xs"
+					class={!editName ? '' : 'hidden'}
+					onclick={() => {
+						editName = true
+					}}>Edit name</Button
+				>
+				<Button
+					size="xs"
+					class={!editName ? 'hidden' : ''}
+					onclick={() => {
+						$players[index].name = newName
+						editName = false
+					}}>Save name</Button
+				>
 
-					<Button
-						size="xs"
-						class={!editScore ? '' : 'hidden'}
-						onclick={() => {
-							editScore = true
-						}}>Edit player score</Button
-					>
-					<Button
-						size="xs"
-						class={!editScore ? 'hidden' : ''}
-						onclick={() => {
-							$players[index].score = newScore
-							editScore = false
-						}}>Save score</Button
-					>
+				<Button
+					size="xs"
+					class={!editScore ? '' : 'hidden'}
+					onclick={() => {
+						editScore = true
+					}}>Edit score</Button
+				>
+				<Button
+					size="xs"
+					class={!editScore ? 'hidden' : ''}
+					onclick={() => {
+						$players[index].score = newScore
+						editScore = false
+					}}>Save score</Button
+				>
 
-					<Button
-						size="xs"
-						class={!confirmDelete ? '' : 'hidden'}
-						onclick={() => {
-							confirmDelete = true
-							setTimeout(() => (confirmDelete = false), 3000)
-						}}>Delete player</Button
-					>
-					<Button
-						size="xs"
-						color="red"
-						class={!confirmDelete ? 'hidden' : ''}
-						onclick={() => {
-							context.removePlayer($players[index].id)
-						}}>Are you sure?</Button
-					>
-				</div>
+				<Button
+					size="xs"
+					class={!confirmDelete ? '' : 'hidden'}
+					onclick={() => {
+						confirmDelete = true
+						setTimeout(() => (confirmDelete = false), 3000)
+					}}>Delete player</Button
+				>
+				<Button
+					size="xs"
+					color="red"
+					class={!confirmDelete ? 'hidden' : ''}
+					onclick={() => {
+						context.removePlayer($players[index].id)
+					}}>Are you sure?</Button
+				>
 			</div>
 		</div>
 	</div>

@@ -134,9 +134,6 @@
 		&.top {
 			top: -140px;
 		}
-		&.bottom {
-			bottom: -150px;
-		}
 	}
 	:global(.dark) .oval {
 		box-shadow:
