@@ -1,5 +1,5 @@
 let currentTheme = $state(
-	typeof window !== 'undefined' ? (localStorage.getItem('score7:theme') ?? 'auto') : 'auto'
+	typeof window !== 'undefined' ? (localStorage.getItem('score7:theme') ?? 'light') : 'light'
 )
 
 export const themeState = {
