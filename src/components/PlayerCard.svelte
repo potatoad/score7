@@ -52,7 +52,12 @@
 </script>
 
 <div
-	class={`rounded-sm p-2 basis-sm m-1 cursor-pointer ${$currentPlayer === index ? 'bg-[#f7e7b2] dark:bg-[#463b18]' : 'bg-white/50 dark:bg-black/50'}`}
+	class={`rounded-sm p-2 cursor-pointer ${
+		$currentPlayer === index ? 'bg-[#f7e7b2] dark:bg-[#463b18]' : 'bg-white/50 dark:bg-black/50'
+	} ${context.findWinners()?.indexOf($players[index]) == 0 && 'border-4 border-red'} ${
+		context.findWinners()?.indexOf($players[index]) == 1 && 'border-4 border-yellow'
+	} ${context.findWinners()?.indexOf($players[index]) == 2 && 'border-4 border-bg-blue-1'}
+		}`}
 	role="button"
 	tabindex={0}
 	onclick={() => {
@@ -67,11 +72,20 @@
 >
 	<div class="flex flex-wrap gap-1">
 		<div class="flex grow flex-col min-w-30">
-			{#if !editName}
-				<h3 class="my-0 text-base font-bold truncate">{$players[index].name}</h3>
-			{:else}
-				<Input style="width:180px;" type="text" bind:value={newName}></Input>
-			{/if}
+			<div class="flex flex-row gap-2">
+				{#if !editName}
+					<h3 class="my-0 text-base font-bold truncate">{$players[index].name}</h3>
+				{:else}
+					<Input style="width:180px;" type="text" bind:value={newName}></Input>
+				{/if}
+				{#if context.findWinners()?.indexOf($players[index]) == 0}
+					<span class="text-red-dark dark:text-red font-bold">1st Place</span>
+				{:else if context.findWinners()?.indexOf($players[index]) == 1}
+					<span class="text-yellow-dark dark:text-yellow font-bold">2nd Place</span>
+				{:else if context.findWinners()?.indexOf($players[index]) == 2}
+					<span class="text-bg-blue-1-dark dark:text-bg-blue-1 font-bold">3rd Place</span>
+				{/if}
+			</div>
 			<div class="flex flex-row">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

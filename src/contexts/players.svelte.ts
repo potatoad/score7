@@ -38,6 +38,7 @@ export interface PlayersContext {
 	addPlayer(_name: string): Player
 	removePlayer(_id: string): void
 	findPlayer(_id: string): Player | undefined
+	findWinners(): Player[] | undefined
 	resetRoundScores(): void
 	resetPlayers(): void
 }
@@ -77,6 +78,15 @@ export const createPlayersContext = (): PlayersContext => {
 		return found
 	}
 
+	function findWinners(): Player[] | undefined {
+		let winners: Player[] = []
+		players.subscribe((list) => {
+			winners = list.toSorted((a, b) => a.score - b.score).filter((player) => player.score >= 200).toReversed()
+		})
+		if(winners.length>0) return winners
+		return undefined
+	}
+
 	function resetRoundScores(): void {
 		players.update((list) => list.map((p) => ({ ...p, roundScore: 0 })))
 	}
@@ -95,6 +105,7 @@ export const createPlayersContext = (): PlayersContext => {
 		addPlayer,
 		removePlayer,
 		findPlayer,
+		findWinners,
 		resetRoundScores,
 		resetPlayers
 	}

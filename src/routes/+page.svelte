@@ -14,11 +14,9 @@
 	{m.round()}: <span class="font-bold round-number">{$roundNumber}</span>
 </div>
 
-<div class="flex flex-wrap mb-2">
+<div class="grid grid-cols-2 gap-1 mb-2">
 	{#each $players as _, index (index)}
-		<div class="flex-1 min-w-[100px]">
 			<PlayerCard {index} />
-		</div>
 	{/each}
 </div>
 

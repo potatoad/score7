@@ -36,7 +36,7 @@
 		<p>{m.no_players()}</p>
 	{/if}
 
-	<div>
+	<div class="flex flex-col gap-2">
 		{#each $players as _, index (index)}
 			<PlayerCard {index} />
 		{/each}
