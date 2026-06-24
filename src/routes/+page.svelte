@@ -14,9 +14,13 @@
 	{m.round()}: <span class="font-bold round-number">{$roundNumber}</span>
 </div>
 
+{#if $players.length === 0}
+	<p class="text-center">{m.no_players()}</p>
+{/if}
+
 <div class="grid grid-cols-2 gap-1 mb-2">
 	{#each $players as _, index (index)}
-			<PlayerCard {index} />
+		<PlayerCard {index} />
 	{/each}
 </div>
 

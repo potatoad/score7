@@ -18,5 +18,20 @@
 	"theme_dark": "Oscuro",
 	"theme_auto": "Auto",
 	"home": "Inicio",
-	"help": "Ayuda"
+	"help": "Ayuda",
+	"how_to_use": "Cómo usar",
+	"over_200_points": "Una vez que un jugador supera los 200 puntos, se le señala como ganador. Si varios jugadores superan los 200 puntos en la ronda final, el jugador con mayor puntuación obtiene el primer puesto, quedando también en juego el segundo y el tercer lugar.",
+	"the_aim_of_flip7": "El objetivo de Flip7 es superar los 200 puntos.",
+	"winning": "Cómo ganar",
+	"scoring_a_game": "Cómo puntuar una partida de Flip7",
+	"scoring_text": "Para empezar, {#link1 to=|/players|}añade jugadores{/link1}. Puedes cambiar el orden de los jugadores con los botones {#iconArrowUpOutline}{/iconArrowUpOutline} y {#iconArrowDownOutline}{/iconArrowDownOutline}. También puedes editar los nombres y las puntuaciones de los jugadores en esta página. Una vez configurados todos los jugadores, vuelve a la {#link2 to=|/|}pantalla principal{/link2}.",
+	"customisation": "Personalización",
+	"light_dark_mode": "Puedes alternar entre el modo claro y el oscuro con el botón {#iconLightbulbOutline}{/iconLightbulbOutline}.",
+	"language_toggle": "El botón 🇬🇧/🇪🇸 alternará entre inglés y español.",
+	"edit_name": "Editar nombre",
+	"edit_score": "Editar partitura",
+	"save_name": "Guardar nombre",
+	"save_score": "Guardar puntuación",
+	"delete_player": "Eliminar jugador",
+	"are_you_sure": "¿Estás seguro?"
 }

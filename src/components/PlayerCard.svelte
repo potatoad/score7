@@ -3,6 +3,7 @@
 	import { getPlayerContext, type Player } from '../contexts/players.svelte'
 	import { page } from '$app/state'
 	import { ArrowDownOutline, ArrowUpOutline } from 'flowbite-svelte-icons'
+	import { m } from '$lib/paraglide/messages'
 	const context = getPlayerContext()
 	const players = context.players
 	const currentPlayer = context.currentPlayer
@@ -137,7 +138,7 @@
 					class={!editName ? '' : 'hidden'}
 					onclick={() => {
 						editName = true
-					}}>Edit name</Button
+					}}>{m.edit_name()}</Button
 				>
 				<Button
 					size="xs"
@@ -145,7 +146,7 @@
 					onclick={() => {
 						$players[index].name = newName
 						editName = false
-					}}>Save name</Button
+					}}>{m.save_name()}</Button
 				>
 
 				<Button
@@ -153,7 +154,7 @@
 					class={!editScore ? '' : 'hidden'}
 					onclick={() => {
 						editScore = true
-					}}>Edit score</Button
+					}}>{m.edit_score()}</Button
 				>
 				<Button
 					size="xs"
@@ -161,7 +162,7 @@
 					onclick={() => {
 						$players[index].score = newScore
 						editScore = false
-					}}>Save score</Button
+					}}>{m.save_score()}</Button
 				>
 
 				<Button
@@ -170,7 +171,7 @@
 					onclick={() => {
 						confirmDelete = true
 						setTimeout(() => (confirmDelete = false), 3000)
-					}}>Delete player</Button
+					}}>{m.delete_player()}</Button
 				>
 				<Button
 					size="xs"
@@ -178,7 +179,7 @@
 					class={!confirmDelete ? 'hidden' : ''}
 					onclick={() => {
 						context.removePlayer($players[index].id)
-					}}>Are you sure?</Button
+					}}>{m.are_you_sure()}</Button
 				>
 			</div>
 		</div>

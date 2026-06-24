@@ -8,6 +8,7 @@
 	const players = context.players
 
 	let name = $state('')
+	let resetPlayers = $state(false)
 
 	function handleAdd(): void {
 		if (!name.trim()) return
@@ -27,13 +28,26 @@
 			onkeydown={(e) => (e.key === 'Enter' ? handleAdd() : undefined)}
 		/>
 		<Button class="sm:ml-3 sm:mt-0 mt-2" onclick={handleAdd}>{m.add_player()}</Button>
-		<Button class="sm:ml-3 sm:mt-0 mt-2" color="dark" onclick={context.resetPlayers}
-			>{m.reset_players()}</Button
+		<Button
+			class="sm:ml-3 sm:mt-0 mt-2 {resetPlayers ? 'hidden' : ''}"
+			color="dark"
+			onclick={() => {
+				resetPlayers = true
+				setTimeout(() => (resetPlayers = false), 3000)
+			}}>{m.reset_players()}</Button
+		>
+		<Button
+			class="sm:ml-3 sm:mt-0 mt-2 {!resetPlayers ? 'hidden' : ''}"
+			color="red"
+			onclick={() => {
+				context.resetPlayers()
+				resetPlayers = false
+			}}>{m.are_you_sure()}</Button
 		>
 	</div>
 
 	{#if $players.length === 0}
-		<p>{m.no_players()}</p>
+		<p class="text-center">{m.no_players()}</p>
 	{/if}
 
 	<div class="flex flex-col gap-2">

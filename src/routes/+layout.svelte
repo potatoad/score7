@@ -76,8 +76,9 @@
 				<LightbulbOutline class="shrink-0 h-6 w-6" />
 			</Button>
 
-			<Button href="/" class={page.url.pathname == '/' ? 'hidden' : 'block'}>{m.home()}</Button>
-			<Button href="/players" class={page.url.pathname != '/' ? 'hidden' : 'block'}>{m.setup_players()}</Button>
+			<Button href="/" class={page.url.pathname == '/' ? 'bg-red dark:bg-red-dark' : 'block'}>{m.home()}</Button>
+			<Button href="/players" class={page.url.pathname == '/players' ? 'bg-red dark:bg-red-dark' : 'block'}>{m.setup_players()}</Button>
+			<Button href="/help" class={page.url.pathname == '/help' ? 'bg-red dark:bg-red-dark' : 'block'}>{m.help()}</Button>
 
 			<Button class={getLocale() == 'en'? 'hidden':'block'} onclick={() => setLocale('en')}>🇪🇸</Button>
 			<Button class={getLocale() == 'es'? 'hidden':'block'} onclick={() => setLocale('es')}>🇬🇧</Button>
