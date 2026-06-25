@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getLocale, setLocale } from '$lib/paraglide/runtime'
 	import { setPlayerContext } from '../contexts/players.svelte'
-	import { Button } from 'flowbite-svelte'
+	import { Button, Dropdown, DropdownDivider, DropdownItem } from 'flowbite-svelte'
 	import { LightbulbOutline, LightbulbSolid } from 'flowbite-svelte-icons'
 	import '../app.css'
 	import logo from '$lib/assets/logo.svg'
@@ -45,7 +45,7 @@
 </script>
 
 <div class="flex justify-center">
-	<div class="yellow max-w-lg grow-1 flex flex-col">
+	<div class="yellow max-w-lg grow flex flex-col">
 		<div
 			class="oval top bg-cream dark:bg-cream-dark flex flex-col justify-center items-center absolute"
 		>
@@ -57,31 +57,48 @@
 		<div
 			class="menu p-3 bg-cream dark:bg-cream-dark border-4 border-dark-blue dark:border-dark-blue-dark text-xl font-bold text-center flex flex-row gap-2 justify-between"
 		>
-			<Button
-				pill={true}
-				style=""
-				class="p-2! dark:hidden"
-				size="lg"
-				onclick={() => applyTheme('dark')}
-			>
-				<LightbulbSolid class="shrink-0 h-6 w-6" />
-			</Button>
+			<div class="flex-1">
+				<Button size="md" class="menu-btn">{m.menu()}</Button>
+				<Dropdown simple triggeredBy=".menu-btn">
+					<DropdownItem
+						href="/"
+						class={page.url.pathname == '/' ? 'bg-red dark:bg-red-dark' : 'block'}
+						>{m.home()}</DropdownItem
+					>
+					<DropdownItem
+						href="/players"
+						class={page.url.pathname == '/players' ? 'bg-red dark:bg-red-dark' : 'block'}
+						>{m.setup_players()}</DropdownItem
+					>
+					<DropdownItem
+						href="/help"
+						class={page.url.pathname == '/help' ? 'bg-red dark:bg-red-dark' : 'block'}
+						>{m.help()}</DropdownItem
+					>
 
-			<Button
-				pill={true}
-				class="p-2! hidden dark:flex"
-				size="lg"
-				onclick={() => applyTheme('light')}
-			>
-				<LightbulbOutline class="shrink-0 h-6 w-6" />
-			</Button>
+					<DropdownDivider />
 
-			<Button href="/" class={page.url.pathname == '/' ? 'bg-red dark:bg-red-dark' : 'block'}>{m.home()}</Button>
-			<Button href="/players" class={page.url.pathname == '/players' ? 'bg-red dark:bg-red-dark' : 'block'}>{m.setup_players()}</Button>
-			<Button href="/help" class={page.url.pathname == '/help' ? 'bg-red dark:bg-red-dark' : 'block'}>{m.help()}</Button>
+					<DropdownItem
+						class={themeState.current == 'light' ? 'hidden' : ''}
+						onclick={() => applyTheme('light')}
+						>{m.toggle_theme()} <LightbulbSolid class="inline" /></DropdownItem
+					>
+					<DropdownItem
+						class={themeState.current == 'dark' ? 'hidden' : ''}
+						onclick={() => applyTheme('dark')}
+						>{m.toggle_theme()} <LightbulbOutline class="inline" /></DropdownItem
+					>
 
-			<Button class={getLocale() == 'en'? 'hidden':'block'} onclick={() => setLocale('en')}>🇪🇸</Button>
-			<Button class={getLocale() == 'es'? 'hidden':'block'} onclick={() => setLocale('es')}>🇬🇧</Button>
+					<DropdownDivider />
+
+					<DropdownItem class={getLocale() == 'en' ? 'hidden' : ''} onclick={() => setLocale('en')}
+						>{m.toggle_lang()} 🇬🇧</DropdownItem
+					>
+					<DropdownItem class={getLocale() == 'es' ? 'hidden' : ''} onclick={() => setLocale('es')}
+						>{m.toggle_lang()} 🇪🇸</DropdownItem
+					>
+				</Dropdown>
+			</div>
 		</div>
 		<div class="p-3 pb-12">
 			{@render children()}

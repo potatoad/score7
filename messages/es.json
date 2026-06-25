@@ -18,6 +18,8 @@
 	"theme_dark": "Oscuro",
 	"theme_auto": "Auto",
 	"home": "Inicio",
+	"menu": "Menú",
+	"toggle_lang": "Cambiar idioma",
 	"help": "Ayuda",
 	"how_to_use": "Cómo usar",
 	"over_200_points": "Una vez que un jugador supera los 200 puntos, se le señala como ganador. Si varios jugadores superan los 200 puntos en la ronda final, el jugador con mayor puntuación obtiene el primer puesto, quedando también en juego el segundo y el tercer lugar.",
@@ -33,5 +35,7 @@
 	"save_name": "Guardar nombre",
 	"save_score": "Guardar puntuación",
 	"delete_player": "Eliminar jugador",
-	"are_you_sure": "¿Estás seguro?"
+	"are_you_sure": "¿Estás seguro?",
+	"toggle_theme": "Cambiar tema"
 }
+

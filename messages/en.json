@@ -13,12 +13,14 @@
 	"setup_players": "Add & Remove Players",
 	"add_player_placeholder": "Player Name",
 	"language": "Language",
+	"toggle_lang": "Toggle language",
 	"theme": "Theme",
 	"theme_light": "Light",
 	"theme_dark": "Dark",
 	"theme_auto": "Auto",
 	"home": "Home",
 	"help": "Help",
+	"menu": "Menu",
 	"how_to_use": "How to use",
 	"over_200_points": "Once a player goes over 200 points, they're highlighted as the winner. If multiple players score over 200 in the final round, the player with the most points is 1st place winner, with 2nd and 3rd place also up for grabs.",
 	"the_aim_of_flip7": "The aim of Flip7 is to score over 200 points.",
@@ -33,5 +35,6 @@
 	"save_score": "Save score",
 	"save_name": "Save name",
 	"are_you_sure": "Are you sure?",
-	"delete_player": "Delete player"
+	"delete_player": "Delete player",
+	"toggle_theme": "Toggle theme"
 }

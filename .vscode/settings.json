@@ -1,7 +1,9 @@
 {
 	"prisma-smart-formatter.typescript.defaultFormatter": "esbenp.prettier-vscode",
 	"prisma-smart-formatter.typescriptreact.defaultFormatter": "vscode.typescript-language-features",
-	"cSpell.words": ["paraglide"],
+	"cSpell.language": "en-gb",
+	"cSpell.overrides": [{ "filename": "es.json", "language": "es, en-gb" }],
+	"cSpell.words": ["paraglide", "superellipse"],
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
